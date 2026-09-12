@@ -1,4 +1,4 @@
-# XiaoAI Stereo Duo
+# Xiaomi Speaker Cross-Model Stereo Pairing
 
 > Turn two different Xiaomi AI speakers into a true wireless Hi-Fi stereo pair.
 > Left channel on the master, right channel on the slave — channel splitting done in code, not "two speakers playing the same song".

@@ -1,4 +1,4 @@
-# XiaoAI Stereo Duo
+# 小米音响跨型号立体声组网
 > 🌐 [简体中文](README.md) | [English](README.en.md) | [🤖 Agent 快速开始](AGENT_QUICKSTART.md) | [🤖 Agent Quick Start](AGENT_QUICKSTART.en.md)
 
 
