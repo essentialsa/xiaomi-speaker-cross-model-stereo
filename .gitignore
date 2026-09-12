@@ -1,0 +1,13 @@
+# 固件二进制不入库（与账号绑定相关，请自行构建）
+firmware/*.squashfs
+firmware/*.bin
+
+# 敏感文件
+*.env
+.env
+*.key
+authorized_keys
+dropbear_authorized_keys
+
+# 构建产物
+target/

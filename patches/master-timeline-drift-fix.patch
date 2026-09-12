@@ -1,0 +1,23 @@
+diff --git a/examples/stereo/src/app/master.rs b/examples/stereo/src/app/master.rs
+index f6cd567..ffec50c 100644
+--- a/examples/stereo/src/app/master.rs
++++ b/examples/stereo/src/app/master.rs
+@@ -143,6 +143,18 @@ pub async fn run_master(master_role: ChannelRole) -> Result<()> {
+                     stream_start_seq = seq;
+                 }
+ 
++                // 【修复时间线漂移】帧推算的时间线若落后真实时钟过多
++                //（播放出现停顿/卡顿导致，且会持续累积），
++                // 以当前时间重新对齐流起点，避免从机把包全部判定「迟到」而丢弃 → 静音。
++                // 正常播放时此条件不触发，原有时间节奏完全不受影响。
++                let frame_based = stream_start_ts
++                    + ((seq - stream_start_seq) as u128 * frame_duration_us);
++                if now > frame_based + 200_000 {
++                    stream_start_ts = now
++                        - ((seq - stream_start_seq) as u128 * frame_duration_us);
++                    stream_start_seq = seq;
++                }
++
+                 // 计算该帧应当播放的目标时间
+                 // target_ts = 数据包发送时间 + 播放延迟
+                 let target_ts = stream_start_ts
